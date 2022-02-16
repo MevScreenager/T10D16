@@ -65,10 +65,12 @@ int main() {
     assect(s21_strstr_test(data1, data2, data3, data4));
     #endif  // QUEST_6
 
-    // printf("\nTEST 7 : s21_strtok\n");
-    // start(data1, data2, data3, data4, sd1, sd2, sd3, sd4);
-    // assect(s21_strtok_test(data1, data2, data3, data4));
-
+    #ifndef QUEST_7
+    #define QUEST_7
+    printf("\nTEST 7 : s21_strtok\n");
+    start(data1, data2, data3, data4, sd1, sd2, sd3, sd4);
+    assect(s21_strtok_test(data1, data2, data3, data4));
+    #endif  // QUEST_7
 }
 
 void start(char *data1, char *data2, char *data3, char *data4, char *sd1, char *sd2, char *sd3, char *sd4) {
@@ -83,10 +85,10 @@ void start(char *data1, char *data2, char *data3, char *data4, char *sd1, char *
 }
 
 int s21_strlen_test(char *data1, char *data2, char *data3, char *data4) {
-    int flag = 0, 
-        a1 = s21_strlen(data1), 
-        a2 = s21_strlen(data2), 
-        a3 = s21_strlen(data3), 
+    int flag = 0,
+        a1 = s21_strlen(data1),
+        a2 = s21_strlen(data2),
+        a3 = s21_strlen(data3),
         a4 = s21_strlen(data4);
     if (a1 != 8) flag++;
     if (a2 != 9) flag++;
@@ -100,7 +102,7 @@ int s21_strlen_test(char *data1, char *data2, char *data3, char *data4) {
 }
 
 int s21_strcmp_test(char *data1, char *data2, char *data3, char *data4) {
-    int flag = 0, 
+    int flag = 0,
         a1 = s21_strcmp(data1, data2),
         a2 = s21_strcmp(data4, data3),
         a3 = s21_strcmp(data1, data3),
@@ -141,7 +143,8 @@ int s21_strcpy_test(char *data1, char *data2, char *data4) {
 
 int s21_strcat_test(char *data1, char *data2) {
     int flag = 0;
-    char data[19] = {'a', 'b', 'c', 'd', 'h', 'f', 'g', 'h', 'l', '2', '1', ' ', 's', 'c', 'h', 'o', 'o', 'l', 0};
+    char data[19] = {'a', 'b', 'c', 'd', 'h', 'f', 'g', 'h',
+    'l', '2', '1', ' ', 's', 'c', 'h', 'o', 'o', 'l', 0};
     printf("\nH 1 True answer:");
     for (int i = 0; data[i] != '\0'; i++)
         printf("%c", data[i]);
@@ -197,19 +200,32 @@ int s21_strstr_test(char *data1, char *data2, char *data3, char *data4) {
     return flag;
 }
 
-// int s21_strtok_test(char *data1, char *data2, char *data3, char *data4) {
-//     int flag = 0;
-//     char *a1 = s21_strtok(data1)
-//     printf("in: %d\tout: %d\n", l1, );
-//     if () flag++;
-//     if () flag++;
-//     if () falg++;
-//     if () flag++;
-//     return flag;
-// }
+int s21_strtok_test(char *data1, char *data2, char *data3, char *data4) {
+    int flag = 0;
+    char data[9] = {'a', 'b', '\n', 'd', '\n', 'f', 'g', '\n', 0};
+    printf("\nH 1 True answer:\n");
+    for (int i = 0; data[i]; i++)
+        printf("%c", data[i]);
+    char *in_2_from_1 = s21_strtok(data1, data2);
+    if (8 != in_2_from_1 - data1) flag++;
+    printf("\nReceived answer:\n");
+    for (int i = 0; data[i]; i++)
+        printf("%c", data1[i]);
+    printf("\nH 2 True answer:\n");
+    for (int i = 0; data3[i]; i++)
+        printf("%c", data3[i]);
+    char *in_4_from_2 = s21_strtok(data3, data4);
+    if (0 != *in_4_from_2) flag++;
+    flag = 0;
+    printf("\nReceived answer:\n");
+    for (int i = 0; data3[i]; i++)
+        printf("%c", data3[i]);
+    return flag;
+}
 
 void assect(int flag) {
     if (flag == 0)
         printf("\nSUCCESS\n");
-    else printf("\nFAIL\n");
+    else
+        printf("\nFAIL\n");
 }
